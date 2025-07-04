@@ -1,16 +1,20 @@
-# This is a sample Python script.
+import qrcode
+from PIL import Image
+url = input("Lutfen url giriniz !")
+# code = qrcode.make("https://github.com")
+code = qrcode.QRCode(
+    version=1,
+    error_correction=qrcode.constants.ERROR_CORRECT_L,
+    box_size=10,
+    border=1,
 
-# Press Shift+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
+)
 
+code.add_data("{}".format(url))
 
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
+code.make(fit=True)
 
+image = code.make_image(fill_color ="black",bac_color="white")
 
-# Press the green button in the gutter to run the script.
-if __name__ == '__main__':
-    print_hi('PyCharm')
+image.show()
 
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
